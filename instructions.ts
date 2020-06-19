@@ -1,7 +1,5 @@
 import { join } from 'path'
 import * as sinkStatic from '@adonisjs/sink'
-import { Application } from '@adonisjs/application/build/standalone'
-import { ApplicationContract } from '@ioc:Adonis/Core/Application'
 
 /**
  * Prompt choices for the frontend framework selection
@@ -38,7 +36,6 @@ function getFrontendFramework (sink: typeof sinkStatic) {
  */
 export default async function instructions (
   projectRoot: string,
-  app: ApplicationContract,
   sink: typeof sinkStatic,
 ) {
   // ...
@@ -68,6 +65,5 @@ export default async function instructions (
 
 instructions(
   join(__dirname, 'sample'),
-  new Application(join(__dirname, 'sample'), {} as any, {} as any, {} as any),
   sinkStatic,
 ).catch(console.log)

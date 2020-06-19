@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "main": "build/providers/InertiaProvider.js",
   "types": "build/adonis-typings/index.d.ts",
+  "files": [
+    "build/adonis-typings",
+    "build/providers",
+    "build/src",
+    "build/instructions.js"
+  ],
   "scripts": {
     "build": "npm run compile && npm run copyfiles",
     "clean": "del build",
@@ -11,6 +17,7 @@
     "copyfiles": "copyfiles \"templates/**/*.txt\" build",
     "lint": "eslint . --ext=.ts",
     "mrm": "mrm --preset=@adonisjs/mrm-preset",
+    "prepublishOnly": "npm run build",
     "release": "np"
   },
   "keywords": [],
@@ -22,6 +29,7 @@
     "@adonisjs/fold": "^6.3.5",
     "@adonisjs/mrm-preset": "^2.3.0",
     "@adonisjs/sink": "^3.0.2",
+    "@adonisjs/view": "^2.0.6",
     "commitizen": "^4.1.2",
     "copyfiles": "^2.3.0",
     "cz-conventional-changelog": "^3.2.0",
@@ -48,5 +56,8 @@
     "providers": [
       "adonis-inertia"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -7,6 +7,8 @@ export default class InertiaProvider {
 
   public boot () {
     this.$container.with(['Adonis/Core/Response'], (Response: ResponseContract) => {
+      // TODO: Fix the typing of the ResponseContract to add "macro" method
+      // @ts-expect-error
       Response.macro('inertia', function (componentPath: string, props: unknown[] = []) {
         const inertiaResponse = new InertiaResponse(componentPath, props, this.ctx!)
 

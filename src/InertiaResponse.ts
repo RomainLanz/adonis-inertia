@@ -12,7 +12,7 @@ export class InertiaResponse {
       component: this.componentPath,
       props: this.props,
       url: this.ctx.request.url(),
-      version: null
+      version: null,
     }
 
     if (this.ctx.request.header('X-Inertia')) {
