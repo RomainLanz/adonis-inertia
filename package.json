@@ -1,6 +1,6 @@
 {
   "name": "adonis-inertia",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "build/providers/InertiaProvider.js",
   "types": "build/adonis-typings/index.d.ts",
   "files": [
