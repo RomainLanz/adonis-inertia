@@ -1,4 +1,3 @@
-import { join } from 'path'
 import * as sinkStatic from '@adonisjs/sink'
 
 /**
@@ -35,11 +34,9 @@ function getFrontendFramework (sink: typeof sinkStatic) {
  * Instructions to be executed when setting up the package.
  */
 export default async function instructions (
-  projectRoot: string,
   sink: typeof sinkStatic,
 ) {
-  // ...
-  const pkg = new sink.files.PackageJsonFile(projectRoot)
+  const pkg = new sink.files.PackageJsonFile('.')
   pkg.install('@inertiajs/inertia')
 
   const frontendFramework = await getFrontendFramework(sink)
@@ -60,10 +57,11 @@ export default async function instructions (
     default: {}
   }
 
+  sink.logger.info(`Installing packages: ${pkg.getInstalls().list.join(', ')}`)
   await pkg.commitAsync()
+  sink.logger.success('Packages installed!')
 }
 
 instructions(
-  join(__dirname, 'sample'),
   sinkStatic,
 ).catch(console.log)
