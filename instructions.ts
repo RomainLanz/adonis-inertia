@@ -1,4 +1,5 @@
 import * as sinkStatic from '@adonisjs/sink'
+import { ApplicationContract } from '@ioc:Adonis/Core/Application'
 
 /**
  * Prompt choices for the frontend framework selection
@@ -27,16 +28,18 @@ const FRONT_PROMPT_CHOICES = [
 ]
 
 function getFrontendFramework (sink: typeof sinkStatic) {
-  return sink.getPrompt().choice('Which frontend framework you want to use?', FRONT_PROMPT_CHOICES)
+  return sink.getPrompt().choice('Which frontend framework do you want to use?', FRONT_PROMPT_CHOICES)
 }
 
 /**
  * Instructions to be executed when setting up the package.
  */
 export default async function instructions (
+  projectRoot: string,
+  app: ApplicationContract,
   sink: typeof sinkStatic,
 ) {
-  const pkg = new sink.files.PackageJsonFile('.')
+  const pkg = new sink.files.PackageJsonFile(projectRoot)
   pkg.install('@inertiajs/inertia')
 
   const frontendFramework = await getFrontendFramework(sink)
@@ -61,7 +64,3 @@ export default async function instructions (
   await pkg.commitAsync()
   sink.logger.success('Packages installed!')
 }
-
-instructions(
-  sinkStatic,
-).catch(console.log)
