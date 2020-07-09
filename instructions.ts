@@ -36,7 +36,7 @@ function getFrontendFramework (sink: typeof sinkStatic) {
  */
 export default async function instructions (
   projectRoot: string,
-  app: ApplicationContract,
+  _: ApplicationContract,
   sink: typeof sinkStatic,
 ) {
   const pkg = new sink.files.PackageJsonFile(projectRoot)
